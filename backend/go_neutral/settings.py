@@ -17,8 +17,8 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
+SECRET_KEY = 'django-insecure-v#v##)nad-nv(y(y(7y*n81k0$o_nepy%42w^re)kh&&qr0*63'
+YOUTUBE_API_KEY = 'AIzaSyCCimjX6z5XzhikiV28TfL5m4njW4toQH8'
 
 
 # Cache settings
@@ -165,5 +165,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://localhost:3000').split(',')
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:5173,http://localhost:3000,frontend:5173').split(',')
 CORS_ALLOW_CREDENTIALS = True

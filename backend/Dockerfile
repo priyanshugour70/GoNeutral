@@ -1,24 +1,21 @@
-FROM python:3.9-slim
+# Use an official Python runtime as a parent image
+FROM python:3.9
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
+# Set the working directory in the container
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
-
+# Copy the requirements file and install dependencies
 COPY requirements.txt .
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy the rest of the application
 COPY . .
 
-RUN mkdir -p /app/staticfiles
-
+# Expose the application port (change if necessary)
 EXPOSE 8000
 
-CMD ["gunicorn", "go_neutral.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Set environment variables (optional)
+ENV PYTHONUNBUFFERED=1
+
+# Run Django migrations and start the server
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]

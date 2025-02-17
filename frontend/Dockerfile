@@ -1,20 +1,20 @@
-# Use Node.js base image
-FROM node:20
+# Use an official Node.js runtime as a parent image
+FROM node:22
 
-# Set work directory inside container
+# Set the working directory in the container
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy frontend source code
+# Copy the rest of the application
 COPY . .
 
-# Expose frontend port
-EXPOSE 3000
+# Expose the application port (Vite uses 5173 by default)
+EXPOSE 5173
 
-# Run React frontend
+# Build and serve the application
 CMD ["npm", "run", "dev"]
